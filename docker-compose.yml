@@ -13,31 +13,29 @@ services:
     volumes:
       - ./.postgis:/var/lib/postgresql        # make a persistent volume in your files of the repo
 
-  api:
-    build:
-      context: ./api
-    restart: unless-stopped
-    depends_on:
-      - db
-    ports:
-      - "8000:8000"
-    env_file:
-      - .env
-    environment:
-      DB_HOST: db
-      DB_PORT: 5432
-      DB_USER: ${DB_USER}
-      DB_PASS: ${DB_PASS}
-      DB_NAME: ${DB_NAME}
-    volumes:
-      - ./api:/app
+  # api:
+  #   build:
+  #     context: ./api
+  #   restart: unless-stopped
+  #   depends_on:
+  #     - db
+  #   ports:
+  #     - "8000:8000"
+  #   env_file:
+  #     - .env
+  #   environment:
+  #     DB_HOST: db
+  #     DB_PORT: 5432
+  #     DB_USER: ${DB_USER}
+  #     DB_PASS: ${DB_PASS}
+  #     DB_NAME: ${DB_NAME}
+  #   volumes:
+  #     - ./api:/app
       
-# dan in de web GUI van geoserver koppelen met de db, anders staan ze los naast elkaar in de stack
-
 # docker compose --build
 # docker compose --watch
 
 # remove volume:
 # sudo rm -rf .geoserver/
 
-# http://localhost:8080/geoserver
+# http://localhost:8000
