@@ -41,18 +41,17 @@ services:
     volumes:
       - ./api:/app
       
-  # ol:
-  #   build: .
-  #   ports:
-  #     - 5173:5173
-  #   volumes:
-  #     - ./src/index.html:/usr/app/index.html
-  #     - ./src/main.js:/usr/app/main.js
+volumes:
+  postgres_data:
 
 # docker compose --build
 # docker compose --watch
+# docker compose config     | check the config
+# docker compose ps         | check ports
 
-# remove volume:
-# sudo rm -rf .geoserver/
+# docker compose down -v    | also removes volumes
+# sudo rm -rf .geoserver/   | removes volume by force
 
 # http://localhost:8000
+
+# . .venv/bin/activate
