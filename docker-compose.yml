@@ -1,17 +1,26 @@
 services:
-  db:         
+
+  db:
     image: postgis/postgis:18-master
     restart: unless-stopped
-    ports:
-      - 54321:5432          # localhost port : port reference inside container 
-    env_file:
-      - .env
+
     environment:
-      - POSTGRES_PASSWORD=${DB_PASS}
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_DB=${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
+
+    ports:
+      - "54321:5432"
+
     volumes:
-      - ./.postgis:/var/lib/postgresql        # make a persistent volume in your files of the repo
+      - postgres_data:/var/lib/postgresql/data    # volume for persistance
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro  # point Docker to the init file (read only)
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   api:
     build:
