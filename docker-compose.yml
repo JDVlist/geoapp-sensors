@@ -3,7 +3,7 @@ services:
     image: postgis/postgis:18-master
     restart: unless-stopped
     ports:
-      - 54321:5432          # host:container
+      - 54321:5432          # localhost port : port reference inside container 
     env_file:
       - .env
     environment:
@@ -13,25 +13,33 @@ services:
     volumes:
       - ./.postgis:/var/lib/postgresql        # make a persistent volume in your files of the repo
 
-  # api:
-  #   build:
-  #     context: ./api
-  #   restart: unless-stopped
-  #   depends_on:
-  #     - db
-  #   ports:
-  #     - "8000:8000"
-  #   env_file:
-  #     - .env
-  #   environment:
-  #     DB_HOST: db
-  #     DB_PORT: 5432
-  #     DB_USER: ${DB_USER}
-  #     DB_PASS: ${DB_PASS}
-  #     DB_NAME: ${DB_NAME}
-  #   volumes:
-  #     - ./api:/app
+  api:
+    build:
+      context: ./api
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432   # container port for db
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
+    volumes:
+      - ./api:/app
       
+  # ol:
+  #   build: .
+  #   ports:
+  #     - 5173:5173
+  #   volumes:
+  #     - ./src/index.html:/usr/app/index.html
+  #     - ./src/main.js:/usr/app/main.js
+
 # docker compose --build
 # docker compose --watch
 
