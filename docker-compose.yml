@@ -1,7 +1,7 @@
 services:
 
   db:
-    image: postgis/postgis:18-master
+    image: postgis/postgis:17-3.5   # stable version
     restart: unless-stopped
 
     environment:
@@ -48,6 +48,7 @@ volumes:
 # docker compose --watch
 # docker compose config     | check the config
 # docker compose ps         | check ports
+# docker compose build --no-cache api | build without python requirements cache
 
 # docker compose down -v    | also removes volumes
 # sudo rm -rf .geoserver/   | removes volume by force
