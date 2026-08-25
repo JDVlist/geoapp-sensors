@@ -1,0 +1,39 @@
+services:
+  db:         
+    image: postgis/postgis:18-master
+    restart: unless-stopped
+    ports:
+      - 54321:5432          # host:container
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - ./.postgis:/var/lib/postgresql        # make a persistent volume in your files of the repo
+  geoserver:
+    image: docker.osgeo.org/geoserver:3.0.0
+    restart: unless-stopped
+    depends_on:
+      - db      
+    ports:
+      - 8080:8080
+    env_file:
+      - .env
+    environment:
+      - GEOSERVER_ADMIN_USER=${GS_USER}
+      - GEOSERVER_ADMIN_PASSWORD=${GS_PASS}
+      - CORS_ENABLED=true
+    volumes:
+      - ./.geoserver:/opt/geoserver_data/    
+
+# dan in de web GUI van geoserver koppelen met de db, anders staan ze los naast elkaar in de stack
+
+# docker compose --build
+# docker compose --watch
+
+# remove volume:
+# sudo rm -rf .geoserver/
+
+# http://localhost:8080/geoserver

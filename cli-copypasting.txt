@@ -1,0 +1,41 @@
+joram@JV-PC:~$ ls
+dev
+joram@JV-PC:~$ cd dev/
+bindmount-apps/            geoapi-repo/               multi-container-app/       welcome-to-docker/
+boilderplate-postgis/      gwnieuwegein/              odin-recipes/
+docker-cursus/             iot-sensors-backend/       python-docker-dev-example/
+docker-cursus-node/        landing-page/              python-docker-example/
+joram@JV-PC:~$ cd dev/docker-cursus/
+bezoekersteller/ geoserver/       node/            pyqgis/          python/          redis/
+joram@JV-PC:~$ cd dev/docker-cursus/geoserver/.geoserver/
+coverages/        gwc/              layouts/          plugIns/          user_projections/ www/
+data/             gwc-layers/       logs/             security/         validation/
+demo/             layergroups/      palettes/         styles/           workspaces/
+joram@JV-PC:~$ cd dev/docker-cursus/geoserver/.geoserver/data/
+ne/         nyc/        sf/         shapefiles/ taz_shapes/
+joram@JV-PC:~$ cd dev/docker-cursus/geoserver/.geoserver/data/ne/
+joram@JV-PC:~/dev/docker-cursus/geoserver/.geoserver/data/ne$ cp /mnt/
+c/    wsl/  wslg/
+joram@JV-PC:~/dev/docker-cursus/geoserver/.geoserver/data/ne$ cp /mnt/c/
+$Recycle.Bin/              AMDAcp_v6.0.3.122_id_1/    Mount&Blade Warband/       Users/
+.GamingRoot                Config.Msi/                OSGeo4W/                   Windows/
+.cache/                    DUMP2db7.tmp               OneDriveTemp/              X-Plane 12/
+AMD/                       Documents and Settings/    PerfLogs/                  XboxGames/
+AMDAcp_v6.0.0.108_id_0/    Drivers/                   Program Files/             example.txt
+AMDAcp_v6.0.0.108_id_1/    DumpStack.log              Program Files (x86)/       hiberfil.sys
+AMDAcp_v6.0.3.116_id_0/    DumpStack.log.tmp          ProgramData/               inetpub/
+AMDAcp_v6.0.3.116_id_1/    Games/                     Recovery/                  pagefile.sys
+AMDAcp_v6.0.3.122_id_0/    Intel/                     System Volume Information/ swapfile.sys
+joram@JV-PC:~/dev/docker-cursus/geoserver/.geoserver/data/ne$ cp /mnt/c/Users/
+All Users/           Default/             Public/              desktop.ini
+CodexSandboxOffline/ Default User/        WsiAccount/          joram/
+joram@JV-PC:~/dev/docker-cursus/geoserver/.geoserver/data/ne$ cp /mnt/c/Users/joram/D
+Desktop/   Documents/ Downloads/
+joram@JV-PC:~/dev/docker-cursus/geoserver/.geoserver/data/ne$ cp /mnt/c/Users/joram/Downloads/SR_50M/SR_50M.t
+SR_50M.tfw  SR_50M.tif
+joram@JV-PC:~/dev/docker-cursus/geoserver/.geoserver/data/ne$ cp /mnt/c/Users/joram/Downloads/SR_50M/SR_50M.tif .
+cp: cannot create regular file './SR_50M.tif': Permission denied
+joram@JV-PC:~/dev/docker-cursus/geoserver/.geoserver/data/ne$ sudo !!
+sudo cp /mnt/c/Users/joram/Downloads/SR_50M/SR_50M.tif .
+[sudo] password for joram:
+joram@JV-PC:~/dev/docker-cursus/geoserver/.geoserver/data/ne$
