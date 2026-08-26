@@ -2,3 +2,4 @@
 .postgis
 .geoserver
 .venv
+__pycache__
