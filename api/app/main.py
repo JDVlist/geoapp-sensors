@@ -56,6 +56,8 @@ def create_measurement(feature: GeoJSONFeature):    # FastAPI automatically uses
             detail="Body must be a valid GeoJSON",
         )
 
+    #TODO: hardcoded for now, make this more dynamic in the future
+    #TODO: assumes WGS84, make more dynamic in the future
     sql = """
         INSERT INTO sensors.measurements (
             sensor_id,
@@ -63,11 +65,11 @@ def create_measurement(feature: GeoJSONFeature):    # FastAPI automatically uses
             geometry
         )
         VALUES (
-            'sensor-001',               #TODO: hardcoded for now, make this more dynamic in the future
+            'sensor-001',               
             %(properties)s::jsonb,
             ST_SetSRID(
                 ST_GeomFromGeoJSON(%(geometry)s),
-                4326                    #TODO: assumes WGS84, make more dynamic in the future
+                4326                    
             )
         )
         RETURNING id, measured_at;
